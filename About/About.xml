@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Simple Stockpile Presets (Continued)</name>
+  <packageId>Mlie.SimpleStockpilePresets</packageId>
+  <author>Lanilor</author>
+  <url>https://github.com/emipa606/SimpleStockpilePresets</url>
+  <supportedVersions>
+    <li>1.0</li>
+    <li>1.1</li>
+    <li>1.2</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <description>Update of Lanilors mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=1428628928
+
+[img]https://i.imgur.com/GYswkZ7.png[/img]
+
+Support-chat:
+https://invite.gg/mlie
+
+Non-steam version:
+https://github.com/emipa606/SimpleStockpilePresets
+	
+--- Original Description ---
+Set common used storage filter settings with simple presets!
+
+A mod that adds various presets for stockpile settings in a comfortable float menu. You can use them to easily set often used storage configurations, both generic ones (like freezer stuff) and specific ones (like food, drugs, weapons or clean apparel).
+
+This is a QOL mod, no content added or changed. To use it, just make a stockpile and select a preset.</description>
+</ModMetaData>
