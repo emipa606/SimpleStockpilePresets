@@ -37,5 +37,8 @@ namespace SimpleStockpilePresets
 
 		// Token: 0x04000009 RID: 9
 		public static ThingDef Uranium;
+
+
+		public static ThingDef MedicineHerbal;
 	}
 }

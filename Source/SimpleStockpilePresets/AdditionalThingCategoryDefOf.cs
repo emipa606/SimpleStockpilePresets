@@ -16,5 +16,7 @@ namespace SimpleStockpilePresets
 
 		// Token: 0x04000001 RID: 1
 		public static ThingCategoryDef MortarShells;
+
+		public static ThingCategoryDef EggsFertilized;
 	}
 }
