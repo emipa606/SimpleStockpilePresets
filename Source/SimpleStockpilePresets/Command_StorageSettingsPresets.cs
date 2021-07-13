@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -11,166 +10,166 @@ namespace SimpleStockpilePresets
     [StaticConstructorOnStartup]
     public class Command_StorageSettingsPresets : Command
     {
+        // Token: 0x0400000A RID: 10
+        public ThingFilter filter;
+
         // Token: 0x06000007 RID: 7 RVA: 0x000020C0 File Offset: 0x000002C0
         public Command_StorageSettingsPresets(Zone_Stockpile stockpile)
         {
-            this.icon = ContentFinder<Texture2D>.Get("UI/Commands/StorageSettingsPresets", true);
-            this.defaultLabel = Translator.Translate("CommandStorageSettingsPresetsLabel");
-            this.defaultDesc = Translator.Translate("CommandStorageSettingsPresetsDesc");
-            this.filter = stockpile.settings.filter;
+            icon = ContentFinder<Texture2D>.Get("UI/Commands/StorageSettingsPresets");
+            defaultLabel = "CommandStorageSettingsPresetsLabel".Translate();
+            defaultDesc = "CommandStorageSettingsPresetsDesc".Translate();
+            filter = stockpile.settings.filter;
         }
 
         // Token: 0x06000008 RID: 8 RVA: 0x000027CC File Offset: 0x000009CC
         public override void ProcessInput(Event ev)
         {
             base.ProcessInput(ev);
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
-            var fertilizedEggs = (from dd in DefDatabase<ThingCategoryDef>.AllDefsListForReading
-                                       where dd.defName == "EggsFertilized"
-                                  select dd).ToList().First();
-            var herbalMedicine = (from dd in DefDatabase<ThingDef>.AllDefsListForReading
-                                  where dd.defName == "MedicineHerbal"
-                                  select dd).ToList().First();
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_GeneralFreezer"), delegate ()
+            var list = new List<FloatMenuOption>();
+            var unused = (from dd in DefDatabase<ThingCategoryDef>.AllDefsListForReading
+                where dd.defName == "EggsFertilized"
+                select dd).ToList().First();
+            var unused1 = (from dd in DefDatabase<ThingDef>.AllDefsListForReading
+                where dd.defName == "MedicineHerbal"
+                select dd).ToList().First();
+            list.Add(new FloatMenuOption("CSSP_GeneralFreezer".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Foods, true, null, null);
-                this.filter.SetAllow(ThingDefOf.Ambrosia, true);
-                this.filter.SetAllow(ThingDefOf.Beer, true);
-                this.filter.SetAllow(ThingDefOf.Wort, true);
-                this.filter.SetAllow(ThingDefOf.MedicineHerbal, true);
-                this.filter.SetAllow(ThingCategoryDefOf.PlantMatter, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesHumanlike, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesAnimal, true, null, null);
-                this.filter.SetAllow(AdditionalThingCategoryDefOf.EggsFertilized, false, null, null);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowRotten, false);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_FreezerNoMeals"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Foods, true);
+                filter.SetAllow(ThingDefOf.Ambrosia, true);
+                filter.SetAllow(ThingDefOf.Beer, true);
+                filter.SetAllow(ThingDefOf.Wort, true);
+                filter.SetAllow(ThingDefOf.MedicineHerbal, true);
+                filter.SetAllow(ThingCategoryDefOf.PlantMatter, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesHumanlike, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesAnimal, true);
+                filter.SetAllow(AdditionalThingCategoryDefOf.EggsFertilized, false);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowRotten, false);
+            }));
+            list.Add(new FloatMenuOption("CSSP_FreezerNoMeals".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Foods, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.FoodMeals, false, null, null);
-                this.filter.SetAllow(ThingDefOf.Ambrosia, true);
-                this.filter.SetAllow(ThingDefOf.Beer, true);
-                this.filter.SetAllow(ThingDefOf.Wort, true);
-                this.filter.SetAllow(ThingDefOf.MedicineHerbal, true);
-                this.filter.SetAllow(ThingCategoryDefOf.PlantMatter, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesHumanlike, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesAnimal, true, null, null);
-                this.filter.SetAllow(AdditionalThingCategoryDefOf.EggsFertilized, false, null, null);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowRotten, false);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_Meals"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Foods, true);
+                filter.SetAllow(ThingCategoryDefOf.FoodMeals, false);
+                filter.SetAllow(ThingDefOf.Ambrosia, true);
+                filter.SetAllow(ThingDefOf.Beer, true);
+                filter.SetAllow(ThingDefOf.Wort, true);
+                filter.SetAllow(ThingDefOf.MedicineHerbal, true);
+                filter.SetAllow(ThingCategoryDefOf.PlantMatter, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesHumanlike, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesAnimal, true);
+                filter.SetAllow(AdditionalThingCategoryDefOf.EggsFertilized, false);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowRotten, false);
+            }));
+            list.Add(new FloatMenuOption("CSSP_Meals".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.FoodMeals, true, null, null);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowRotten, false);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_GeneralStorage"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.FoodMeals, true);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowRotten, false);
+            }));
+            list.Add(new FloatMenuOption("CSSP_GeneralStorage".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Manufactured, true, null, null);
-                this.filter.SetAllow(ThingDefOf.Ambrosia, false);
-                this.filter.SetAllow(ThingDefOf.Beer, false);
-                this.filter.SetAllow(ThingDefOf.Wort, false);
-                this.filter.SetAllow(ThingCategoryDefOf.ResourcesRaw, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.PlantMatter, false, null, null);
-                this.filter.SetAllow(AdditionalThingCategoryDefOf.EggsFertilized, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Items, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Weapons, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Apparel, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Buildings, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesMechanoid, true, null, null);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_GeneralMedical"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Manufactured, true);
+                filter.SetAllow(ThingDefOf.Ambrosia, false);
+                filter.SetAllow(ThingDefOf.Beer, false);
+                filter.SetAllow(ThingDefOf.Wort, false);
+                filter.SetAllow(ThingCategoryDefOf.ResourcesRaw, true);
+                filter.SetAllow(ThingCategoryDefOf.PlantMatter, false);
+                filter.SetAllow(AdditionalThingCategoryDefOf.EggsFertilized, true);
+                filter.SetAllow(ThingCategoryDefOf.Items, true);
+                filter.SetAllow(ThingCategoryDefOf.Weapons, true);
+                filter.SetAllow(ThingCategoryDefOf.Apparel, true);
+                filter.SetAllow(ThingCategoryDefOf.Buildings, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesMechanoid, true);
+            }));
+            list.Add(new FloatMenuOption("CSSP_GeneralMedical".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Medicine, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Drugs, true, null, null);
-                this.filter.SetAllow(ThingDefOf.Ambrosia, false);
-                this.filter.SetAllow(ThingDefOf.Beer, false);
-                this.filter.SetAllow(ThingDefOf.Neutroamine, true);
-                this.filter.SetAllow(ThingCategoryDefOf.BodyParts, true, null, null);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_Drugs"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Medicine, true);
+                filter.SetAllow(ThingCategoryDefOf.Drugs, true);
+                filter.SetAllow(ThingDefOf.Ambrosia, false);
+                filter.SetAllow(ThingDefOf.Beer, false);
+                filter.SetAllow(ThingDefOf.Neutroamine, true);
+                filter.SetAllow(ThingCategoryDefOf.BodyParts, true);
+            }));
+            list.Add(new FloatMenuOption("CSSP_Drugs".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Drugs, true, null, null);
-                this.filter.SetAllow(ThingDefOf.Ambrosia, false);
-                this.filter.SetAllow(ThingDefOf.Beer, false);
-                this.filter.SetAllow(ThingDefOf.Neutroamine, true);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_MaterialsOutside"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Drugs, true);
+                filter.SetAllow(ThingDefOf.Ambrosia, false);
+                filter.SetAllow(ThingDefOf.Beer, false);
+                filter.SetAllow(ThingDefOf.Neutroamine, true);
+            }));
+            list.Add(new FloatMenuOption("CSSP_MaterialsOutside".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.StoneBlocks, true, null, null);
-                this.filter.SetAllow(ThingDefOf.Plasteel, true);
-                this.filter.SetAllow(ThingDefOf.Silver, true);
-                this.filter.SetAllow(ThingDefOf.Steel, true);
-                this.filter.SetAllow(ThingDefOf.Uranium, true);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_Materials"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.StoneBlocks, true);
+                filter.SetAllow(ThingDefOf.Plasteel, true);
+                filter.SetAllow(ThingDefOf.Silver, true);
+                filter.SetAllow(ThingDefOf.Steel, true);
+                filter.SetAllow(ThingDefOf.Uranium, true);
+            }));
+            list.Add(new FloatMenuOption("CSSP_Materials".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.ResourcesRaw, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.PlantMatter, false, null, null);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_VariousOthers"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.ResourcesRaw, true);
+                filter.SetAllow(ThingCategoryDefOf.PlantMatter, false);
+            }));
+            list.Add(new FloatMenuOption("CSSP_VariousOthers".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Manufactured, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Medicine, false, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Drugs, false, null, null);
-                this.filter.SetAllow(ThingDefOf.Neutroamine, false);
-                this.filter.SetAllow(ThingDefOf.Wort, false);
-                this.filter.SetAllow(ThingCategoryDefOf.Items, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.BodyParts, false, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Weapons, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Apparel, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Buildings, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesMechanoid, true, null, null);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_Shells"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Manufactured, true);
+                filter.SetAllow(ThingCategoryDefOf.Medicine, false);
+                filter.SetAllow(ThingCategoryDefOf.Drugs, false);
+                filter.SetAllow(ThingDefOf.Neutroamine, false);
+                filter.SetAllow(ThingDefOf.Wort, false);
+                filter.SetAllow(ThingCategoryDefOf.Items, true);
+                filter.SetAllow(ThingCategoryDefOf.BodyParts, false);
+                filter.SetAllow(ThingCategoryDefOf.Weapons, true);
+                filter.SetAllow(ThingCategoryDefOf.Apparel, true);
+                filter.SetAllow(ThingCategoryDefOf.Buildings, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesMechanoid, true);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
+            }));
+            list.Add(new FloatMenuOption("CSSP_Shells".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(AdditionalThingCategoryDefOf.MortarShells, true, null, null);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_Weapons"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(AdditionalThingCategoryDefOf.MortarShells, true);
+            }));
+            list.Add(new FloatMenuOption("CSSP_Weapons".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Weapons, true, null, null);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_CleanApparel"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Weapons, true);
+            }));
+            list.Add(new FloatMenuOption("CSSP_CleanApparel".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Apparel, true, null, null);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_TaintedApparel"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Apparel, true);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
+            }));
+            list.Add(new FloatMenuOption("CSSP_TaintedApparel".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Apparel, true, null, null);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowNonDeadmansApparel, false);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_Chunks"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Apparel, true);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowNonDeadmansApparel, false);
+            }));
+            list.Add(new FloatMenuOption("CSSP_Chunks".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Chunks, true, null, null);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            list.Add(new FloatMenuOption(Translator.Translate("CSSP_Rotting"), delegate ()
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Chunks, true);
+            }));
+            list.Add(new FloatMenuOption("CSSP_Rotting".Translate(), delegate
             {
-                this.filter.SetDisallowAll(null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.Apparel, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesHumanlike, true, null, null);
-                this.filter.SetAllow(ThingCategoryDefOf.CorpsesAnimal, true, null, null);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowFresh, false);
-                this.filter.SetAllow(SpecialThingFilterDefOf.AllowNonDeadmansApparel, false);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null));
+                filter.SetDisallowAll();
+                filter.SetAllow(ThingCategoryDefOf.Apparel, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesHumanlike, true);
+                filter.SetAllow(ThingCategoryDefOf.CorpsesAnimal, true);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowFresh, false);
+                filter.SetAllow(SpecialThingFilterDefOf.AllowNonDeadmansApparel, false);
+            }));
             Find.WindowStack.Add(new FloatMenu(list));
         }
-
-        // Token: 0x0400000A RID: 10
-        public ThingFilter filter;
     }
 }
