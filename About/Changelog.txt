@@ -1,5 +1,9 @@
 # Changelog for SimpleStockpilePresets
 
+1.4.2 - Added french translation, thanks Imprécation.
+Used DeepL to update translations for ChineseSimplified
+
+
 1.4.1 - Mod updated for 1.4 and passed autotests.
 
 
