@@ -8,7 +8,6 @@ internal class Harmony
 {
     static Harmony()
     {
-        var harmonyInstance = new HarmonyLib.Harmony("rimworld.lanilor.simplestockpilepresets");
-        harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+        new HarmonyLib.Harmony("rimworld.lanilor.simplestockpilepresets").PatchAll(Assembly.GetExecutingAssembly());
     }
 }

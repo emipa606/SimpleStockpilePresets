@@ -23,10 +23,10 @@ public class Command_StorageSettingsPresets : Command
     {
         base.ProcessInput(ev);
         var list = new List<FloatMenuOption>();
-        var unused = (from dd in DefDatabase<ThingCategoryDef>.AllDefsListForReading
+        _ = (from dd in DefDatabase<ThingCategoryDef>.AllDefsListForReading
             where dd.defName == "EggsFertilized"
             select dd).ToList().First();
-        var unused1 = (from dd in DefDatabase<ThingDef>.AllDefsListForReading
+        _ = (from dd in DefDatabase<ThingDef>.AllDefsListForReading
             where dd.defName == "MedicineHerbal"
             select dd).ToList().First();
         list.Add(new FloatMenuOption("CSSP_GeneralFreezer".Translate(), delegate
@@ -47,7 +47,7 @@ public class Command_StorageSettingsPresets : Command
         {
             filter.SetDisallowAll();
             filter.SetAllow(ThingCategoryDefOf.Foods, true);
-            filter.SetAllow(ThingCategoryDefOf.FoodMeals, false);
+            filter.SetAllow(ThingCategoryDef.Named("FoodMeals"), false);
             filter.SetAllow(ThingDefOf.Ambrosia, true);
             filter.SetAllow(ThingDefOf.Beer, true);
             filter.SetAllow(ThingDefOf.Wort, true);
@@ -61,7 +61,7 @@ public class Command_StorageSettingsPresets : Command
         list.Add(new FloatMenuOption("CSSP_Meals".Translate(), delegate
         {
             filter.SetDisallowAll();
-            filter.SetAllow(ThingCategoryDefOf.FoodMeals, true);
+            filter.SetAllow(ThingCategoryDef.Named("FoodMeals"), true);
             filter.SetAllow(SpecialThingFilterDefOf.AllowRotten, false);
         }));
         list.Add(new FloatMenuOption("CSSP_GeneralStorage".Translate(), delegate

@@ -7,6 +7,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1428628928
 
 - If you want a version where the presets can be edited try the forked version:
 https://steamcommunity.com/sharedfiles/filedetails/?id=1778592386
+- Added french translation, thanks Imprécation.
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 
