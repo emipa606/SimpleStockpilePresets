@@ -4,7 +4,7 @@ using Verse;
 namespace SimpleStockpilePresets;
 
 [StaticConstructorOnStartup]
-internal class Harmony
+internal static class Harmony
 {
     static Harmony()
     {
